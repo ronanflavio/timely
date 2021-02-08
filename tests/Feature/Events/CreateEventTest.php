@@ -10,8 +10,6 @@ class CreateEventTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $eventData;
-
     public function setUp(): void
     {
         parent::setUp();
