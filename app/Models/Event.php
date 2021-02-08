@@ -18,10 +18,11 @@ class Event extends Model
 
     public function organizers()
     {
-        return $this->hasMany(
+        return $this->belongsToMany(
             Organizer::class,
+            'events_to_organizers',
             'event_id',
-            'id'
+            'organizer_id'
         );
     }
 }
