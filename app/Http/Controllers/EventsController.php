@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Event\CreateEventAction;
+use App\Actions\Event\RetrieveEventAction;
 use App\DataTransferObjects\Event\CreateEventData;
 use App\Http\Requests\Event\CreateEventRequest;
 
@@ -15,9 +16,10 @@ class EventsController extends Controller
         return response()->json($response, 201);
     }
 
-    public function retrieve()
+    public function retrieve(RetrieveEventAction $action, int $id)
     {
-        //
+        $response = $action($id);
+        return response()->json($response);
     }
 
     public function update()
