@@ -45,4 +45,17 @@ class RetrieveEventTest extends TestCase
 
         $response->assertStatus(404);
     }
+
+    /**
+     * @test
+     */
+    public function shouldRetrieveAllEventsWhenIdIsNotSpecified()
+    {
+        $response = $this->json(
+            'GET',
+            '/api/events',
+        );
+
+        $response->assertStatus(200);
+    }
 }
