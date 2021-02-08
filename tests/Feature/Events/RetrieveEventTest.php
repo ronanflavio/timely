@@ -31,4 +31,19 @@ class RetrieveEventTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /**
+     * @test
+     */
+    public function shouldThrowExceptionWhenIdDoesNotExists()
+    {
+        $id = 10;
+
+        $response = $this->json(
+            'GET',
+            '/api/events/' . $id . '/retrieve',
+        );
+
+        $response->assertStatus(404);
+    }
 }

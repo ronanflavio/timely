@@ -76,4 +76,17 @@ class SaveEventTest extends TestCase
         $response->assertStatus(400);
     }
 
+    public function shouldThrowExceptionWhenUpdatingWithInvalidId()
+    {
+        $invalidId = 100;
+
+        $response = $this->json(
+            'PUT',
+            '/api/events/' . $invalidId,
+            $this->dataProvider()
+        );
+
+        $response->assertStatus(404);
+    }
+
 }

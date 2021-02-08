@@ -31,4 +31,19 @@ class DeleteEventTest extends TestCase
 
         $response->assertStatus(201);
     }
+
+    /**
+     * @test
+     */
+    public function shouldThrowExceptionWhenIdDoesNotExists()
+    {
+        $id = 10;
+
+        $response = $this->json(
+            'DELETE',
+            '/api/events/' . $id,
+        );
+
+        $response->assertStatus(404);
+    }
 }
