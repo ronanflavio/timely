@@ -13,7 +13,6 @@ class DeleteEventTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->seed();
         Event::factory()->create();
     }
 

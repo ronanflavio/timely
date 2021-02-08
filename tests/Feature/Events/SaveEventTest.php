@@ -14,7 +14,6 @@ class SaveEventTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->seed();
         Organizer::factory()->count(3)->create();
     }
 
