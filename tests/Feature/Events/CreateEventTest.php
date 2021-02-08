@@ -22,8 +22,6 @@ class CreateEventTest extends TestCase
      */
     public function shouldCreateNewEventWhenDataIsValid(): void
     {
-        $this->withoutExceptionHandling();
-
         $data = [
             'title' => 'Title of the event',
             'description' => 'Long description goes here.',
@@ -40,4 +38,27 @@ class CreateEventTest extends TestCase
 
         $response->assertStatus(201);
     }
+
+    /**
+     * @test
+     */
+    public function shouldNotCreateEventWhenOrganizersDoNotExists(): void
+    {
+        $data = [
+            'title' => 'Title of the event',
+            'description' => 'Long description goes here.',
+            'start_datetime' => '2021-12-25 18:00:00',
+            'end_datetime' => '2021-12-25 23:59:59',
+            'organizers' => [1,2,3,4],
+        ];
+
+        $response = $this->json(
+            'POST',
+            '/api/events',
+            $data
+        );
+
+        $response->assertStatus(400);
+    }
+
 }
