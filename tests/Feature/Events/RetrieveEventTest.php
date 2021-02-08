@@ -26,7 +26,7 @@ class RetrieveEventTest extends TestCase
 
         $response = $this->json(
             'GET',
-            '/api/events/' . $id . '/retrieve',
+            '/api/events/' . $id,
         );
 
         $response->assertStatus(200);
@@ -41,7 +41,7 @@ class RetrieveEventTest extends TestCase
 
         $response = $this->json(
             'GET',
-            '/api/events/' . $id . '/retrieve',
+            '/api/events/' . $id,
         );
 
         $response->assertStatus(404);
