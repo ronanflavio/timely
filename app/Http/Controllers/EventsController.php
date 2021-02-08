@@ -18,6 +18,12 @@ class EventsController extends Controller
         return response()->json($response, 201);
     }
 
+    public function list(RetrieveEventAction $action)
+    {
+        $response = $action();
+        return response()->json($response);
+    }
+
     public function retrieve(RetrieveEventAction $action, int $id)
     {
         $response = $action($id);
