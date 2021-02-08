@@ -15,10 +15,7 @@ class CreateOrganizersTable extends Migration
     {
         Schema::create('organizers', function (Blueprint $table) {
             $table->id();
-            $table->integer('event_id');
             $table->timestamps();
-
-            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
         });
     }
 
