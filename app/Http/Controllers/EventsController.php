@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Event\CreateEventAction;
+use App\Actions\Event\SaveEventAction;
 use App\Actions\Event\DeleteEventAction;
 use App\Actions\Event\RetrieveEventAction;
-use App\Actions\Event\UpdateEventAction;
-use App\DataTransferObjects\Event\CreateEventData;
-use App\DataTransferObjects\Event\UpdateEventData;
-use App\Http\Requests\Event\CreateEventRequest;
-use App\Http\Requests\Event\UpdateEventRequest;
+use App\DataTransferObjects\Event\SaveEventData;
+use App\Http\Requests\Event\SaveEventRequest;
 use App\Models\Event;
 
 class EventsController extends Controller
 {
-    public function create(CreateEventRequest $request, CreateEventAction $action)
+    public function create(SaveEventRequest $request, SaveEventAction $action)
     {
-        $data = CreateEventData::fromRequest($request);
+        $data = SaveEventData::fromRequest($request);
         $response = $action($data);
         return response()->json($response, 201);
     }
@@ -27,10 +24,10 @@ class EventsController extends Controller
         return response()->json($response);
     }
 
-    public function update(UpdateEventRequest $request, UpdateEventAction $action, Event $event)
+    public function update(SaveEventRequest $request, SaveEventAction $action, Event $event)
     {
-        $data = UpdateEventData::fromRequest($request);
-        $response = $action($event, $data);
+        $data = SaveEventData::fromRequest($request);
+        $response = $action($data, $event);
         return response()->json($response, 201);
     }
 
