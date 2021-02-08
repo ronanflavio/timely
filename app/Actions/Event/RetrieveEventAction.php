@@ -6,8 +6,11 @@ use App\Models\Event;
 
 class RetrieveEventAction
 {
-    public function __invoke(int $id)
+    public function __invoke(int $id = null)
     {
-        return Event::findOrFail($id);
+        if (!empty($id)) {
+            return Event::with('organizers')->findOrFail($id);
+        }
+        return Event::with('organizers')->get();
     }
 }
