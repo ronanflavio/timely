@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Event\CreateEventAction;
+use App\Actions\Event\DeleteEventAction;
 use App\Actions\Event\RetrieveEventAction;
 use App\Actions\Event\UpdateEventAction;
 use App\DataTransferObjects\Event\CreateEventData;
@@ -33,8 +34,9 @@ class EventsController extends Controller
         return response()->json($response, 201);
     }
 
-    public function delete()
+    public function delete(DeleteEventAction $action, Event $event)
     {
-        //
+        $response = $action($event);
+        return response()->json($response, 201);
     }
 }
