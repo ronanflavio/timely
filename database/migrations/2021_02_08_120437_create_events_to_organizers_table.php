@@ -14,8 +14,8 @@ class CreateEventsToOrganizersTable extends Migration
     public function up()
     {
         Schema::create('events_to_organizers', function (Blueprint $table) {
-            $table->integer('event_id');
-            $table->integer('organizer_id');
+            $table->unsignedBigInteger('event_id');
+            $table->unsignedBigInteger('organizer_id');
             $table->timestamps();
 
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
