@@ -27,7 +27,7 @@ class UpdateEventRequest extends FormRequest
             'title' => 'required|max:255',
             'description' => 'nullable',
             'start_datetime' => 'required|date_format:"Y-m-d H:i:s"',
-            'end_datetime' => 'required|date_format:"Y-m-d H:i:s"',
+            'end_datetime' => 'required|date_format:"Y-m-d H:i:s"|after:start_datetime',
             'organizers.*' => 'required|numeric'
         ];
     }
