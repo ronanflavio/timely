@@ -75,6 +75,9 @@ class SaveEventTest extends TestCase
         $response->assertStatus(400);
     }
 
+    /**
+     * @test
+     */
     public function shouldThrowExceptionWhenUpdatingWithInvalidId()
     {
         $invalidId = 100;
