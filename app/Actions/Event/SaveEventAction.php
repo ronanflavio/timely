@@ -2,15 +2,15 @@
 
 namespace App\Actions\Event;
 
-use App\DataTransferObjects\Event\CreateEventData;
+use App\DataTransferObjects\Event\SaveEventData;
 use App\Exceptions\Organizer\OneOrMoreOrganizersDoNotExistException;
 use App\Models\Event;
 use App\Models\Organizer;
 use Illuminate\Support\Facades\DB;
 
-class CreateEventAction
+class SaveEventAction
 {
-    public function __invoke(CreateEventData $data, Event $event = null): int
+    public function __invoke(SaveEventData $data, Event $event = null): int
     {
         DB::beginTransaction();
 
@@ -22,7 +22,7 @@ class CreateEventAction
             $event->end_datetime = $data->end_datetime;
             $event->save();
 
-            $this->synchOrganizers($event, $data->organizers);
+            $this->syncOrganizers($event, $data->organizers);
             DB::commit();
             return $event->id;
         } catch (\Exception $e) {
@@ -31,7 +31,7 @@ class CreateEventAction
         }
     }
 
-    private function synchOrganizers(Event $event, array $organizers): void
+    private function syncOrganizers(Event $event, array $organizers): void
     {
         if (!$this->organizersExist($organizers)) {
             throw new OneOrMoreOrganizersDoNotExistException();

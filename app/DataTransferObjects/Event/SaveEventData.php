@@ -2,11 +2,11 @@
 
 namespace App\DataTransferObjects\Event;
 
-use App\Http\Requests\Event\CreateEventRequest;
+use App\Http\Requests\Event\SaveEventRequest;
 use Carbon\Carbon;
 use Spatie\DataTransferObject\DataTransferObject;
 
-class CreateEventData extends DataTransferObject
+class SaveEventData extends DataTransferObject
 {
     /**
      * @var string
@@ -33,7 +33,7 @@ class CreateEventData extends DataTransferObject
      */
     public $organizers;
 
-    public static function fromRequest(CreateEventRequest $request)
+    public static function fromRequest(SaveEventRequest $request)
     {
         return new self([
             'title' => $request->title,
